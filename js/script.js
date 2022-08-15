@@ -94,3 +94,38 @@ var swiper = new Swiper(".blog-slider", {
 });
 
 console.log("portfolio swiper working");
+
+//==================SCROLL UP ==========================
+function scrollUp() {
+  const scrollup = document.getElementById("scroll-up");
+  //when the scroll higher than 560 viewpoint /height,the scroll up icon appear and on click
+  if (this.scrollY >= 560) {
+    scrollup.classList.add("show-scroll");
+  } else {
+    scrollup.classList.remove("show-scroll");
+  }
+  console.log("scroll up being called and working");
+}
+window.addEventListener("scroll", scrollUp);
+
+//==================SCROLL SECTION ACTIVE HIGHLIGHT ==========================
+const sections = document.querySelectorAll("section[id]");
+function scrollActive() {
+  const scrollY = window.pageYOffset;
+  sections.forEach(current => {
+    const sectionHeight = current.offsetHeight;
+    const sectionTop = current.offsetTop - 50;
+    sectionId = current.getAttribute("id");
+    if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+      document
+        .querySelector(".nav_menu a[href*=" + sectionId + "]")
+        .classList.add("active-link");
+    } else {
+      document
+        .querySelector(".nav_menu a[href*=" + sectionId + "]")
+        .classList.remove("active-link");
+    }
+  });
+  console.log("section highlight being called and working");
+}
+window.addEventListener("scroll", scrollActive);
